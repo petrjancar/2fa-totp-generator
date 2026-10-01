@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; form-action 'none'; base-uri 'none';"
+    />
+    <title>2FA TOTP Generator</title>
+    <link rel="stylesheet" href="css/css.css" />
+  </head>
+  <body>
+    <h1>2FA TOTP Generator</h1>
+    <div class="grid">
+      <fieldset class="config">
+        <legend>Configuration</legend>
+        <label
+          >Secret (Base32)
+          <input id="secret" autocomplete="off" spellcheck="false"
+        /></label>
+        <div class="row">
+          <select id="secretLen" aria-label="Random secret length">
+            <option value="16">128 bits (26 chars)</option>
+            <option value="20" selected>160 bits (32 chars)</option>
+            <option value="32">256 bits (52 chars)</option>
+          </select>
+          <button type="button" id="regen">Random</button>
+        </div>
+        <label
+          >Account
+          <input id="account" value="user@example.com" autocomplete="off"
+        /></label>
+        <label
+          >Issuer <input id="issuer" value="example" autocomplete="off"
+        /></label>
+        <div class="row">
+          <label
+            >Algorithm
+            <select id="algorithm">
+              <option value="SHA1" selected>SHA1</option>
+              <option value="SHA256">SHA256</option>
+              <option value="SHA512">SHA512</option>
+            </select>
+          </label>
+          <label
+            >Digits
+            <select id="digits">
+              <option value="6" selected>6</option>
+              <option value="8">8</option>
+            </select>
+          </label>
+          <label
+            >Period (s)
+            <input
+              id="period"
+              type="number"
+              min="1"
+              max="86400"
+              step="1"
+              value="30"
+          /></label>
+        </div>
+        <div class="messages">
+          <div class="error" id="error" role="alert"></div>
+          <div class="warning" id="warning" role="status"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>QR Code</legend>
+        <div id="qr" role="img" aria-label="TOTP QR code"></div>
+        <div id="uri"></div>
+        <div id="timer">
+          <div class="caption">Current token</div>
+          <div id="currentToken">—</div>
+          <span id="timerText"></span>
+          <div
+            id="bar"
+            role="progressbar"
+            aria-label="Time until next token"
+            aria-valuemin="0"
+          >
+            <div id="barFill"></div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <fieldset class="verify-box">
+      <legend>Verify Token</legend>
+      <form id="verify" autocomplete="off" novalidate>
+        <div class="row">
+          <label
+            >Token
+            <input
+              id="token"
+              inputmode="numeric"
+              maxlength="8"
+              placeholder="123456"
+          /></label>
+          <label
+            >Window (± periods)
+            <input
+              id="window"
+              type="number"
+              min="0"
+              max="10"
+              step="1"
+              value="1"
+          /></label>
+          <button type="submit">Verify</button>
+        </div>
+      </form>
+      <div id="result" role="status"></div>
+      <div class="hint">
+        Window accepts tokens from that many periods before/after the current
+        one (0 = current only).
+      </div>
+      <div class="hint">Verified in the browser; nothing is sent anywhere.</div>
+    </fieldset>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"
+      integrity="sha384-lQXOAyZwHXE55JFyrOMB7nY2Wv+m5ZWNtJcHrd1rceRQXAYNLak8ukN5TjBTcIwz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/js.js"></script>
+  </body>
+</html>
