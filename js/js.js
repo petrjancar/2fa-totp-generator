@@ -112,12 +112,10 @@
     $("result").className = "";
   }
 
-  // Skip identical writes so live regions aren't re-announced.
   const setText = (el, text) => {
     if (el.textContent !== text) el.textContent = text;
   };
 
-  // Hide rather than clear so the layout height stays constant.
   function setStale(stale) {
     $("qr").classList.toggle("stale", stale);
     $("uri").classList.toggle("stale", stale);

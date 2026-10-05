@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; form-action 'none'; base-uri 'none';"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; form-action 'none'; base-uri 'none';"
     />
     <title>2FA TOTP Generator</title>
     <link rel="stylesheet" href="css/css.css" />
@@ -116,11 +116,7 @@
       <div class="hint">Verified in the browser; nothing is sent anywhere.</div>
     </fieldset>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"
-      integrity="sha384-lQXOAyZwHXE55JFyrOMB7nY2Wv+m5ZWNtJcHrd1rceRQXAYNLak8ukN5TjBTcIwz"
-      crossorigin="anonymous"
-    ></script>
+    <script src="js/qrcode.js"></script>
     <script src="js/js.js"></script>
   </body>
 </html>
