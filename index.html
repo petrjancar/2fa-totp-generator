@@ -15,6 +15,8 @@
     <div class="grid">
       <fieldset class="config">
         <legend>Configuration</legend>
+        <button type="button" id="openImport">Decode QR code</button>
+        <div class="import-msg" id="importMsg" role="status"></div>
         <label
           >Secret (Base32)
           <input id="secret" autocomplete="off" spellcheck="false"
@@ -116,7 +118,22 @@
       <div class="hint">Verified in the browser; nothing is sent anywhere.</div>
     </fieldset>
 
+    <dialog id="importDlg" aria-labelledby="importTitle">
+      <h2 id="importTitle">Decode QR code</h2>
+      <button type="button" id="pickFile">Choose image file</button>
+      <input id="qrFile" type="file" accept="image/*" hidden />
+      <button type="button" id="scanCam">Use webcam</button>
+      <div id="camBox" hidden>
+        <video id="cam" playsinline muted></video>
+      </div>
+      <div class="import-msg" id="dlgMsg" role="status"></div>
+      <div class="dlg-actions">
+        <button type="button" id="closeImport">Cancel</button>
+      </div>
+    </dialog>
+
     <script src="js/qrcode.js"></script>
+    <script src="js/jsQR.js"></script>
     <script src="js/js.js"></script>
   </body>
 </html>

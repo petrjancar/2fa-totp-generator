@@ -7,3 +7,4 @@ A simple web-based tool to generate and verify Time-based One-Time Passwords (TO
 ## Used Libraries
 
 - [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) for generating QR codes in the browser.
+- [jsQR](https://github.com/cozmo/jsQR) for scanning QR codes from images and webcam in the browser.

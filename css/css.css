@@ -79,6 +79,52 @@ button {
   display: flex;
   flex-direction: column;
 }
+#openImport {
+  align-self: flex-start;
+  margin-top: 0;
+}
+dialog {
+  width: min(420px, calc(100vw - 2rem));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+dialog::backdrop {
+  background: #0008;
+}
+dialog h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+dialog > button {
+  width: 100%;
+  margin-top: 0.7rem;
+}
+.dlg-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.7rem;
+}
+#camBox {
+  margin-top: 0.6rem;
+}
+#cam {
+  width: 100%;
+  max-height: 260px;
+  background: #000;
+  border-radius: 6px;
+}
+.import-msg {
+  font-size: 0.85rem;
+  min-height: 1.3em;
+  margin-top: 0.4rem;
+}
+.import-msg.bad {
+  color: var(--bad);
+}
+.import-msg.ok {
+  color: var(--ok);
+}
 .messages {
   margin-top: auto;
   padding-top: 0.6rem;
